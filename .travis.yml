@@ -10,5 +10,7 @@ deploy:
   provider: script
   skip_cleanup: true
   script:
-  - curl -T cpp01_2-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uvvz-otus:$BINTRAY_API_KEY "https://api.bintray.com/content/vvz-otus/vvz/cpp01_2/$TRAVIS_BUILD_NUMBER/cpp01_2-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+  - curl -T cpp01_2-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uboydad:$BINTRAY_API_KEY "https://api.bintray.com/content/boydad/vvz/1-SimpleDebianPackage
+/$TRAVIS_BUILD_NUMBER/1-SimpleDebianPackage
+-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 
