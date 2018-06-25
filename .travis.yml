@@ -5,7 +5,8 @@ script:
   - cmake .
   - cmake --build .
 #  - cmake --build . --target test
-  - cmake --build . --target helloworld
+  - cmake --build . --target helloworld_cli
+  - cmake --build . --target package
 deploy:
   provider: script
   skip_cleanup: true
