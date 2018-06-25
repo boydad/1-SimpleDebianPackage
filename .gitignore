@@ -3,4 +3,10 @@ CMakeCache.txt
 CMakeFiles/
 Makefile
 cmake_install.cmake
+CPackConfig.cmake
+CPackSourceConfig.cmake
+_CPack_Packages/
+helloworld-0.0.0-Linux.deb
+helloworld_cli
+install_manifest.txt
 
