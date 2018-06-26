@@ -9,7 +9,7 @@ project(helloworld VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 #configure_file(version.h.in version.h)
 
-add_executable(helloworld_cli main.cpp)
+add_executable(helloworld_cli main.cpp myDynLib.cpp)
 
 #add_library(cpp01_2 lib.cpp)
 
