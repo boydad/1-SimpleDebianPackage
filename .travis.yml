@@ -7,9 +7,7 @@ script:
 #  - cmake --build . --target test
   - cmake --build . --target helloworld
   - cmake --build . --target package
-before_deploy:
-  - 'export _PROJECT_VERSION=`grep -Eo "[0-9]+.[0-9]+.[0-9]+.[0-9]+" version.cpp`'
-  - echo _PROJECT_VERSION$_PROJECT_VERSION
+  - 'export _PROJECT_VERSION=`grep -Eo "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" version.cpp`'
 deploy:
   provider: script
   skip_cleanup: true
