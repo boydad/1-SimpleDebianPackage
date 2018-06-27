@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.5)
 
 project(helloworld)
 
@@ -23,6 +23,10 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/version.cpp.in
 set(version_file "${CMAKE_CURRENT_BINARY_DIR}/version.cpp")
 #================================
 # end version part
+set( ENV{VERSION_FOR_TRAVIS} SSS)
+set(ENV{PATH} "/home/martink")
+SET(ENV{PKG_CONFIG_PATH} "/my/path:$ENV{PKG_CONFIG_PATH}")
+
 
 
 
