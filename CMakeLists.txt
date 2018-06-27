@@ -1,26 +1,26 @@
 cmake_minimum_required(VERSION 3.2)
 
-#add_executable(helloworld main.cpp)
+project(helloworld)
 
-
-project(helloworld VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 #find_package(Boost COMPONENTS unit_test_framework REQUIRED)
-#configure_file(version.h.in version.h)
 
-set(SRC main.cpp)
+set(PROJECT_VERSION_MAJOR 1)
+set(PROJECT_VERSION_MINOR 1)
+set(PROJECT_VERSION_PATCH 1)
+set(PROJECT_VERSIOM_BUILD $ENV{TRAVIS_BUILD_NUMBER})
 
+configure_file(version.h.in version.h)
+
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+
+add_executable(helloworld main.cpp)
 add_library(myDynLib SHARED myDynLib.cpp)
 
-add_executable(helloworld_cli main.cpp)
 
-target_link_libraries(helloworld_cli myDynLib)
+target_link_libraries(helloworld myDynLib)
 
-#add_library(cpp01_2 lib.cpp)
-
-#add_executable(test_main_cli test_main.cpp)
-
-set_target_properties(helloworld_cli myDynLib PROPERTIES
+set_target_properties(helloworld myDynLib PROPERTIES
   CXX_STANDARD 14
   CXX_STANDARD_REQUIRED ON
   COMPILE_OPTIONS -Wpedantic -Wall -Wextra
@@ -40,17 +40,14 @@ set_target_properties(helloworld_cli myDynLib PROPERTIES
 #  cpp01_2
 #)
 
-install(TARGETS helloworld_cli DESTINATION bin)
+install(TARGETS helloworld DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 
-#set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
-#set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
-#set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
-
-set(CPACK_PACKAGE_VERSION_MAJOR 0)
-set(CPACK_PACKAGE_VERSION_MINOR 0)
-set(CPACK_PACKAGE_VERSION_PATCH $ENV{TRAVIS_BUILD_NUMBER})
+set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
+set(CPACK_PACKAGE_VERSION_BUILD ${PROJECT_VERSIOM_BUILD})
 
 set(CPACK_PACKAGE_CONTACT boyda_d@mail.ru)
 
