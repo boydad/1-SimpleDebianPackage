@@ -23,33 +23,29 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/version.cpp.in
 set(version_file "${CMAKE_CURRENT_BINARY_DIR}/version.cpp")
 #================================
 # end version part
-set( ENV{VERSION_FOR_TRAVIS} SSS)
-set(ENV{PATH} "/home/martink")
-SET(ENV{PKG_CONFIG_PATH} "/my/path:$ENV{PKG_CONFIG_PATH}")
 
-
-
-
-#find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-
+find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
 add_executable(helloworld ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp )
 add_library(myDynLib SHARED ${CMAKE_CURRENT_SOURCE_DIR}/src/myDynLib.cpp ${version_file})
+add_executable(testTestableFunc ${CMAKE_CURRENT_SOURCE_DIR}/src/testTestableFunc.cpp)
 
 
 target_link_libraries(helloworld myDynLib)
 
-set_target_properties(helloworld myDynLib PROPERTIES
+target_link_libraries(testTestableFunc
+  ${Boost_LIBRARIES}
+  myDynLib
+)
+
+set_target_properties(helloworld myDynLib testTestableFunc PROPERTIES
   CXX_STANDARD 14
   CXX_STANDARD_REQUIRED ON
   COMPILE_OPTIONS -Wpedantic -Wall -Wextra
 )
 
-#target_link_libraries(test_main_cli
-#  ${Boost_LIBRARIES}
-#  cpp01_2
-#)
+
 
 install(TARGETS helloworld DESTINATION bin)
 
@@ -59,6 +55,6 @@ set(CPACK_PACKAGE_CONTACT xxx@xxx.xx)
 
 include(CPack)
 
-#enable_testing()
+enable_testing()
 
-#add_test(test_version_valid test_main_cli)
+add_test(testTestableFunc testTestableFunc)

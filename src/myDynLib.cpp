@@ -10,3 +10,9 @@ const std::string getVersion()
 {
   return gGIT_VERSION_SHORT;
 }
+
+int testableFunc()
+{
+  return 1;
+}
+
