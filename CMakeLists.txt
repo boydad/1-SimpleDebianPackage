@@ -48,6 +48,8 @@ set_target_properties(helloworld myDynLib testTestableFunc PROPERTIES
 
 
 install(TARGETS helloworld DESTINATION bin)
+install(TARGETS myDynLib LIBRARY DESTINATION lib)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/include/myDynLib.h DESTINATION include)
 
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION ${VERSION_SHORT})
