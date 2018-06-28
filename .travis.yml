@@ -7,9 +7,10 @@ script:
   - cmake --build . --target test
   - cmake --build . --target helloworld
   - cmake --build . --target package
+before_deploy: 
+  - 'export _PROJECT_VERSION=`grep -Eo "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" version.cpp`'
 deploy:
   provider: script
   skip_cleanup: true
   script:
-  - 'export _PROJECT_VERSION=`grep -Eo "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" version.cpp`'
   - '! curl -T helloworld-${_PROJECT_VERSION}-Linux.deb -uboydad:$BINTRAY_API_KEY "https://api.bintray.com/content/boydad/1-SimpleDebianPackage/helloworld/${_PROJECT_VERSION}/helloworld-${_PROJECT_VERSION}-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1" | grep -v success'
